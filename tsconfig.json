@@ -1,0 +1,170 @@
+{
+  "compilerOptions": {
+    // JavaScript version that TypeScript will compile down to.
+    // ES2020 gives modern features like optional chaining, nullish coalescing, etc.
+    "target": "ES2020",
+
+    // Type of module system to generate. CommonJS is used in Node.js environments.
+    "module": "CommonJS",
+
+    // How TypeScript resolves modules. "Node" matches Node.js behavior.
+    "moduleResolution": "Node",
+
+    // Allows default import syntax (import express from "express") 
+    // even when the module exports with CommonJS.
+    "esModuleInterop": true,
+
+    // Enables all strict type-checking options in TypeScript.
+    "strict": true,
+
+    // Skips checking type definitions from node_modules (faster compilation).
+    "skipLibCheck": true,
+
+    // Ensures consistency in file name casing across OS (avoids case-sensitive bugs).
+    "forceConsistentCasingInFileNames": true,
+
+    // Where your TypeScript source files live.
+    "rootDir": "src",
+
+    // Where compiled JavaScript files should be put.
+    "outDir": "dist",
+
+    // Important! Allows normal import/export in CommonJS without errors.
+    // Fixes the "verbatimModuleSyntax" error you were getting.
+    "verbatimModuleSyntax": false
+    
+  },
+
+  // Include only the src/ folder for TypeScript compilation.
+  "include": ["src"]
+}
+
+
+// {
+//   "compilerOptions": {
+//     /* Basic Options */
+//     "target": "ES2022",                     /* Modern JavaScript features */
+//     "module": "CommonJS",                   /* Node.js uses CommonJS */
+//     "lib": ["ES2022"],                      /* Include modern JS APIs */
+
+//     /* Strict Type-Checking Options */
+//     "strict": true,                         /* Enable all strict type-checking options */
+//     "noImplicitAny": true,
+//     "strictNullChecks": true,
+//     "strictFunctionTypes": true,
+//     "strictBindCallApply": true,
+//     "strictPropertyInitialization": true,
+//     "noImplicitThis": true,
+//     "alwaysStrict": true,
+
+//     /* Additional Checks */
+//     "noUnusedLocals": false,
+//     "noUnusedParameters": false,
+//     "noImplicitReturns": false,
+//     "noFallthroughCasesInSwitch": false,
+//     "noUncheckedIndexedAccess": false,
+
+//     /* Module Resolution Options */
+//     "moduleResolution": "node",
+//     "esModuleInterop": true,                /* Allows default imports from CommonJS */
+//     "allowSyntheticDefaultImports": true,
+
+//     /* Source Map & Debugging */
+//     "sourceMap": true,
+
+//     /* Output */
+//     "outDir": "./dist",                     /* Redirect output to dist folder */
+//     "rootDir": "./src",                     /* Source files location */
+//     "removeComments": true,
+
+//     /* Advanced Options */
+//     "skipLibCheck": true,                   /* Skip type checking of declaration files (faster) */
+//     "forceConsistentCasingInFileNames": true,
+
+//     /* Experimental */
+//     "experimentalDecorators": true,         /* Needed if using Mongoose @Schema decorators */
+//     "emitDecoratorMetadata": true           /* Required for reflect-metadata in class-based setups */
+//   },
+//   "include": [
+//     "src/**/*",
+//     "src/types/**/*" // if you put it in a types folder
+//   ],
+//   "exclude": [
+//     "node_modules",
+//     "dist"
+//   ]
+// }
+
+
+// {
+//   "compilerOptions": {
+//     "target": "ES2022",
+//     "module": "CommonJS",
+//     "lib": ["ES2022"],
+//     "strict": true,
+//     "noImplicitAny": true,
+//     "strictNullChecks": true,
+//     "strictFunctionTypes": true,
+//     "strictBindCallApply": true,
+//     "strictPropertyInitialization": true,
+//     "noImplicitThis": true,
+//     "alwaysStrict": true,
+
+//     "noUnusedLocals": false,
+//     "noUnusedParameters": false,
+//     "noImplicitReturns": false,
+//     "noFallthroughCasesInSwitch": false,
+//     "noUncheckedIndexedAccess": false,
+
+//     "moduleResolution": "node",
+//     "esModuleInterop": true,
+//     "allowSyntheticDefaultImports": true,
+
+//     "sourceMap": true,
+//     "outDir": "./dist",
+//     "rootDir": "./src",
+//     "removeComments": true,
+//     "skipLibCheck": true,
+//     "forceConsistentCasingInFileNames": true,
+
+//     "experimentalDecorators": true,
+//     "emitDecoratorMetadata": true,
+
+//     /* THIS IS THE KEY LINE THAT FIXES YOUR PROBLEM */
+//     "typeRoots": ["./node_modules/@types", "./src/types"]
+//   },
+//   "include": [
+//     "src/**/*"
+//   ],
+//   "exclude": [
+//     "node_modules",
+//     "dist"
+//   ]
+// }
+
+
+// {
+//   "compilerOptions": {
+//     "target": "ES2020",
+//     "module": "commonjs",
+//     "rootDir": "./src",
+//     "outDir": "./dist",
+
+//     "strict": true,
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+
+//     "typeRoots": [
+//       "./node_modules/@types",
+//       "./src/types"
+//     ]
+//   },
+
+//   "ts-node": {
+//     "files": true
+//   },
+
+//   "include": ["src/**/*"]
+// }
+
+

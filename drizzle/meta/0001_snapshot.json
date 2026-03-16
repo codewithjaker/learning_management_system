@@ -1,0 +1,1882 @@
+{
+  "id": "b52506d7-f514-4e97-9ffb-62ce9c9bf347",
+  "prevId": "ed049468-94c2-4ba7-b9f5-c423959cd961",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.categories": {
+      "name": "categories",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "icon": {
+          "name": "icon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "categories_name_unique": {
+          "name": "categories_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        },
+        "categories_slug_unique": {
+          "name": "categories_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.coupons": {
+      "name": "coupons",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "coupon_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "value": {
+          "name": "value",
+          "type": "numeric(5, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "course_id": {
+          "name": "course_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "max_uses": {
+          "name": "max_uses",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "used_count": {
+          "name": "used_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "valid_from": {
+          "name": "valid_from",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "valid_until": {
+          "name": "valid_until",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "coupons_code_idx": {
+          "name": "coupons_code_idx",
+          "columns": [
+            {
+              "expression": "code",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "coupons_course_idx": {
+          "name": "coupons_course_idx",
+          "columns": [
+            {
+              "expression": "course_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "coupons_course_id_courses_id_fk": {
+          "name": "coupons_course_id_courses_id_fk",
+          "tableFrom": "coupons",
+          "tableTo": "courses",
+          "columnsFrom": [
+            "course_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "coupons_code_unique": {
+          "name": "coupons_code_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "code"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.courses": {
+      "name": "courses",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "subtitle": {
+          "name": "subtitle",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "full_description": {
+          "name": "full_description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image": {
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "preview_video_url": {
+          "name": "preview_video_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "level": {
+          "name": "level",
+          "type": "course_level",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'all-levels'"
+        },
+        "category_id": {
+          "name": "category_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tags": {
+          "name": "tags",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'[]'::jsonb"
+        },
+        "price": {
+          "name": "price",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "original_price": {
+          "name": "original_price",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rating": {
+          "name": "rating",
+          "type": "numeric(3, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0.00'"
+        },
+        "total_reviews": {
+          "name": "total_reviews",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "duration": {
+          "name": "duration",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "featured": {
+          "name": "featured",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "is_new": {
+          "name": "is_new",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        },
+        "is_bestseller": {
+          "name": "is_bestseller",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "certification": {
+          "name": "certification",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "requirements": {
+          "name": "requirements",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'[]'::jsonb"
+        },
+        "learning_outcomes": {
+          "name": "learning_outcomes",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'[]'::jsonb"
+        },
+        "target_audience": {
+          "name": "target_audience",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'[]'::jsonb"
+        },
+        "language": {
+          "name": "language",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "course_projects": {
+          "name": "course_projects",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'[]'::jsonb"
+        },
+        "course_software": {
+          "name": "course_software",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'[]'::jsonb"
+        },
+        "course_features": {
+          "name": "course_features",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'[]'::jsonb"
+        },
+        "instructor_id": {
+          "name": "instructor_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "course_status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'draft'"
+        },
+        "published_at": {
+          "name": "published_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "idx_courses_instructor": {
+          "name": "idx_courses_instructor",
+          "columns": [
+            {
+              "expression": "instructor_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_courses_category": {
+          "name": "idx_courses_category",
+          "columns": [
+            {
+              "expression": "category_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_courses_slug": {
+          "name": "idx_courses_slug",
+          "columns": [
+            {
+              "expression": "slug",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "courses_category_id_categories_id_fk": {
+          "name": "courses_category_id_categories_id_fk",
+          "tableFrom": "courses",
+          "tableTo": "categories",
+          "columnsFrom": [
+            "category_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "courses_instructor_id_users_id_fk": {
+          "name": "courses_instructor_id_users_id_fk",
+          "tableFrom": "courses",
+          "tableTo": "users",
+          "columnsFrom": [
+            "instructor_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "courses_slug_unique": {
+          "name": "courses_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.enrollments": {
+      "name": "enrollments",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "course_id": {
+          "name": "course_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "enrolled_at": {
+          "name": "enrolled_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "status": {
+          "name": "status",
+          "type": "enrollment_status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'active'"
+        },
+        "completed_at": {
+          "name": "completed_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "enrollments_user_idx": {
+          "name": "enrollments_user_idx",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "enrollments_course_idx": {
+          "name": "enrollments_course_idx",
+          "columns": [
+            {
+              "expression": "course_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "enrollments_user_id_users_id_fk": {
+          "name": "enrollments_user_id_users_id_fk",
+          "tableFrom": "enrollments",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "enrollments_course_id_courses_id_fk": {
+          "name": "enrollments_course_id_courses_id_fk",
+          "tableFrom": "enrollments",
+          "tableTo": "courses",
+          "columnsFrom": [
+            "course_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "enrollments_user_id_course_id_unique": {
+          "name": "enrollments_user_id_course_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "user_id",
+            "course_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "full_name": {
+          "name": "full_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bio": {
+          "name": "bio",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "avatar": {
+          "name": "avatar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "role": {
+          "name": "role",
+          "type": "user_role",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'student'"
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "last_login_at": {
+          "name": "last_login_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "users_email_idx": {
+          "name": "users_email_idx",
+          "columns": [
+            {
+              "expression": "email",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "users_role_idx": {
+          "name": "users_role_idx",
+          "columns": [
+            {
+              "expression": "role",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.syllabus_sections": {
+      "name": "syllabus_sections",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "course_id": {
+          "name": "course_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "order_index": {
+          "name": "order_index",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "idx_syllabus_sections_course": {
+          "name": "idx_syllabus_sections_course",
+          "columns": [
+            {
+              "expression": "course_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "syllabus_sections_course_id_courses_id_fk": {
+          "name": "syllabus_sections_course_id_courses_id_fk",
+          "tableFrom": "syllabus_sections",
+          "tableTo": "courses",
+          "columnsFrom": [
+            "course_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.syllabus_items": {
+      "name": "syllabus_items",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "section_id": {
+          "name": "section_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "item_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "content": {
+          "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "duration": {
+          "name": "duration",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_free": {
+          "name": "is_free",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "order_index": {
+          "name": "order_index",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "idx_syllabus_items_section": {
+          "name": "idx_syllabus_items_section",
+          "columns": [
+            {
+              "expression": "section_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "syllabus_items_section_id_syllabus_sections_id_fk": {
+          "name": "syllabus_items_section_id_syllabus_sections_id_fk",
+          "tableFrom": "syllabus_items",
+          "tableTo": "syllabus_sections",
+          "columnsFrom": [
+            "section_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.user_item_progress": {
+      "name": "user_item_progress",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "item_id": {
+          "name": "item_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "completed": {
+          "name": "completed",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "last_position": {
+          "name": "last_position",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "completed_at": {
+          "name": "completed_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "progress_user_idx": {
+          "name": "progress_user_idx",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "progress_item_idx": {
+          "name": "progress_item_idx",
+          "columns": [
+            {
+              "expression": "item_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "user_item_progress_user_id_users_id_fk": {
+          "name": "user_item_progress_user_id_users_id_fk",
+          "tableFrom": "user_item_progress",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "user_item_progress_item_id_syllabus_items_id_fk": {
+          "name": "user_item_progress_item_id_syllabus_items_id_fk",
+          "tableFrom": "user_item_progress",
+          "tableTo": "syllabus_items",
+          "columnsFrom": [
+            "item_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "user_item_progress_user_id_item_id_unique": {
+          "name": "user_item_progress_user_id_item_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "user_id",
+            "item_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.course_reviews": {
+      "name": "course_reviews",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "course_id": {
+          "name": "course_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rating": {
+          "name": "rating",
+          "type": "numeric(2, 1)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "comment": {
+          "name": "comment",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "reviews_course_idx": {
+          "name": "reviews_course_idx",
+          "columns": [
+            {
+              "expression": "course_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "course_reviews_user_id_users_id_fk": {
+          "name": "course_reviews_user_id_users_id_fk",
+          "tableFrom": "course_reviews",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "course_reviews_course_id_courses_id_fk": {
+          "name": "course_reviews_course_id_courses_id_fk",
+          "tableFrom": "course_reviews",
+          "tableTo": "courses",
+          "columnsFrom": [
+            "course_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "course_reviews_user_id_course_id_unique": {
+          "name": "course_reviews_user_id_course_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "user_id",
+            "course_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.invoices": {
+      "name": "invoices",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "invoice_number": {
+          "name": "invoice_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "enrollment_id": {
+          "name": "enrollment_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "coupon_id": {
+          "name": "coupon_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "discount": {
+          "name": "discount",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'"
+        },
+        "total": {
+          "name": "total",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "invoice_status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'pending'"
+        },
+        "issued_at": {
+          "name": "issued_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "paid_at": {
+          "name": "paid_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "invoices_user_idx": {
+          "name": "invoices_user_idx",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "invoices_enrollment_idx": {
+          "name": "invoices_enrollment_idx",
+          "columns": [
+            {
+              "expression": "enrollment_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "invoices_coupon_idx": {
+          "name": "invoices_coupon_idx",
+          "columns": [
+            {
+              "expression": "coupon_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "invoices_user_id_users_id_fk": {
+          "name": "invoices_user_id_users_id_fk",
+          "tableFrom": "invoices",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "invoices_enrollment_id_enrollments_id_fk": {
+          "name": "invoices_enrollment_id_enrollments_id_fk",
+          "tableFrom": "invoices",
+          "tableTo": "enrollments",
+          "columnsFrom": [
+            "enrollment_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "invoices_coupon_id_coupons_id_fk": {
+          "name": "invoices_coupon_id_coupons_id_fk",
+          "tableFrom": "invoices",
+          "tableTo": "coupons",
+          "columnsFrom": [
+            "coupon_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "invoices_invoice_number_unique": {
+          "name": "invoices_invoice_number_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "invoice_number"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.invoice_items": {
+      "name": "invoice_items",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "invoice_id": {
+          "name": "invoice_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "course_name": {
+          "name": "course_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quantity": {
+          "name": "quantity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 1
+        },
+        "unit_price": {
+          "name": "unit_price",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total": {
+          "name": "total",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "invoice_items_invoice_idx": {
+          "name": "invoice_items_invoice_idx",
+          "columns": [
+            {
+              "expression": "invoice_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "invoice_items_invoice_id_invoices_id_fk": {
+          "name": "invoice_items_invoice_id_invoices_id_fk",
+          "tableFrom": "invoice_items",
+          "tableTo": "invoices",
+          "columnsFrom": [
+            "invoice_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.payments": {
+      "name": "payments",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "invoice_id": {
+          "name": "invoice_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "amount": {
+          "name": "amount",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "payment_method": {
+          "name": "payment_method",
+          "type": "payment_method",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "transaction_id": {
+          "name": "transaction_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gateway_response": {
+          "name": "gateway_response",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "receipt_number": {
+          "name": "receipt_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "payment_status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'pending'"
+        },
+        "paid_at": {
+          "name": "paid_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "installment_number": {
+          "name": "installment_number",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "note": {
+          "name": "note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "payments_invoice_idx": {
+          "name": "payments_invoice_idx",
+          "columns": [
+            {
+              "expression": "invoice_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "payments_transaction_idx": {
+          "name": "payments_transaction_idx",
+          "columns": [
+            {
+              "expression": "transaction_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "payments_receipt_idx": {
+          "name": "payments_receipt_idx",
+          "columns": [
+            {
+              "expression": "receipt_number",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "payments_invoice_id_invoices_id_fk": {
+          "name": "payments_invoice_id_invoices_id_fk",
+          "tableFrom": "payments",
+          "tableTo": "invoices",
+          "columnsFrom": [
+            "invoice_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "payments_receipt_number_unique": {
+          "name": "payments_receipt_number_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "receipt_number"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.payouts": {
+      "name": "payouts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "instructor_id": {
+          "name": "instructor_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "amount": {
+          "name": "amount",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "period_start": {
+          "name": "period_start",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "period_end": {
+          "name": "period_end",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "payout_status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'pending'"
+        },
+        "payment_method": {
+          "name": "payment_method",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "transaction_id": {
+          "name": "transaction_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "paid_at": {
+          "name": "paid_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "notes": {
+          "name": "notes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "payouts_instructor_idx": {
+          "name": "payouts_instructor_idx",
+          "columns": [
+            {
+              "expression": "instructor_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "payouts_instructor_id_users_id_fk": {
+          "name": "payouts_instructor_id_users_id_fk",
+          "tableFrom": "payouts",
+          "tableTo": "users",
+          "columnsFrom": [
+            "instructor_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.coupon_type": {
+      "name": "coupon_type",
+      "schema": "public",
+      "values": [
+        "percentage",
+        "fixed"
+      ]
+    },
+    "public.course_level": {
+      "name": "course_level",
+      "schema": "public",
+      "values": [
+        "beginner",
+        "intermediate",
+        "advanced",
+        "all-levels"
+      ]
+    },
+    "public.course_status": {
+      "name": "course_status",
+      "schema": "public",
+      "values": [
+        "draft",
+        "published",
+        "archived"
+      ]
+    },
+    "public.enrollment_status": {
+      "name": "enrollment_status",
+      "schema": "public",
+      "values": [
+        "active",
+        "completed",
+        "refunded"
+      ]
+    },
+    "public.invoice_status": {
+      "name": "invoice_status",
+      "schema": "public",
+      "values": [
+        "pending",
+        "paid",
+        "refunded",
+        "cancelled"
+      ]
+    },
+    "public.item_type": {
+      "name": "item_type",
+      "schema": "public",
+      "values": [
+        "video",
+        "article",
+        "quiz",
+        "coding",
+        "exercise",
+        "resource",
+        "assignment"
+      ]
+    },
+    "public.payment_method": {
+      "name": "payment_method",
+      "schema": "public",
+      "values": [
+        "sslcommerz",
+        "stripe",
+        "paypal",
+        "cash",
+        "bank_transfer"
+      ]
+    },
+    "public.payment_status": {
+      "name": "payment_status",
+      "schema": "public",
+      "values": [
+        "pending",
+        "completed",
+        "failed",
+        "refunded"
+      ]
+    },
+    "public.payout_status": {
+      "name": "payout_status",
+      "schema": "public",
+      "values": [
+        "pending",
+        "paid",
+        "failed"
+      ]
+    },
+    "public.user_role": {
+      "name": "user_role",
+      "schema": "public",
+      "values": [
+        "student",
+        "instructor",
+        "admin"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
