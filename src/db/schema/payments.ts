@@ -59,3 +59,7 @@ export const payments = pgTable(
     receiptIdx: index("payments_receipt_idx").on(table.receiptNumber),
   }),
 );
+
+
+export type Payment = typeof payments.$inferSelect;
+ 

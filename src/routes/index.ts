@@ -8,11 +8,11 @@ import syllabusItemRoutes from './syllabusItem.routes';
 import enrollmentRoutes from './enrollment.routes';
 // import progressRoutes from './progress.routes';
 import reviewRoutes from './review.routes';
-// import couponRoutes from './coupon.routes';
-// import invoiceRoutes from './invoice.routes';
-// import invoiceItemRoutes from './invoiceItem.routes';
-// import paymentRoutes from './payment.routes';
-// import payoutRoutes from './payout.routes';
+import couponRoutes from './coupon.routes';
+import invoiceRoutes from './invoice.routes';
+import invoiceItemRoutes from './invoiceItem.routes';
+import paymentRoutes from './payment.routes';
+import payoutRoutes from './payout.routes';
 
 const router = Router();
 
@@ -25,10 +25,10 @@ router.use('/syllabus-items', syllabusItemRoutes);
 router.use('/enrollments', enrollmentRoutes);
 // router.use('/progress', progressRoutes);
 router.use('/reviews', reviewRoutes);
-// router.use('/coupons', couponRoutes);
-// router.use('/invoices', invoiceRoutes);
-// router.use('/invoice-items', invoiceItemRoutes);
-// router.use('/payments', paymentRoutes);
-// router.use('/payouts', payoutRoutes);
+router.use('/coupons', couponRoutes);
+router.use('/invoices', invoiceRoutes);
+router.use('/invoice-items', invoiceItemRoutes);
+router.use('/payments', paymentRoutes);
+router.use('/payouts', payoutRoutes);
 
 export default router;

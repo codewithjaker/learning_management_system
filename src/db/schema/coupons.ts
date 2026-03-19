@@ -19,3 +19,5 @@ export const coupons = pgTable('coupons', {
   codeIdx: index('coupons_code_idx').on(table.code),
   courseIdx: index('coupons_course_idx').on(table.courseId),
 }));
+
+export type  Coupon = typeof coupons.$inferSelect

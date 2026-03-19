@@ -18,3 +18,5 @@ export const payouts = pgTable('payouts', {
 }, (table) => ({
   instructorIdx: index('payouts_instructor_idx').on(table.instructorId),
 }));
+
+export type Payout = typeof payouts.$inferSelect

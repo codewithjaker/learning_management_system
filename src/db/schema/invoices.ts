@@ -48,3 +48,6 @@ export const invoices = pgTable(
     couponIdx: index("invoices_coupon_idx").on(table.couponId),
   })
 );
+
+export type Invoice = typeof invoices.$inferSelect;
+ 
