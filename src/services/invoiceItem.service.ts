@@ -4,7 +4,7 @@ import { invoiceItems } from '../db/schema/invoiceItems';
 import { invoices } from '../db/schema/invoices';
 import { eq, and, count, desc, asc } from 'drizzle-orm';
 import { NotFoundError, BadRequestError, ForbiddenError } from '../utils/errors';
-import type { CreateInvoiceItemInput, UpdateInvoiceItemInput } from '../validations/invoiceItem';
+import type { CreateInvoiceItemInput, UpdateInvoiceItemInput } from '../validations/invoiceItem.validation';
 import type { InvoiceItem } from '../db/schema/invoiceItems';
 
 export class InvoiceItemService {

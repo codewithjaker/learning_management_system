@@ -5,7 +5,7 @@ import { payouts } from '../db/schema/payouts';
 import { users } from '../db/schema/users';
 import { eq, and, desc, asc, count, gte, lte, sql } from 'drizzle-orm';
 import { NotFoundError, BadRequestError, ForbiddenError } from '../utils/errors';
-import type { CreatePayoutInput, UpdatePayoutInput } from '../validations/payout';
+import type { CreatePayoutInput, UpdatePayoutInput } from '../validations/payout.validation';
 import type { Payout } from '../db/schema/payouts';
 
 export class PayoutService {

@@ -7,7 +7,7 @@ import { courses } from '../db/schema/courses';
 import { couponService } from './coupon.service'; // for using coupon
 import { eq, and, count, desc, asc, sql, gte, lte, inArray } from 'drizzle-orm';
 import { NotFoundError, BadRequestError, ForbiddenError } from '../utils/errors';
-import type { CreateInvoiceInput, UpdateInvoiceInput } from '../validations/invoice';
+import type { CreateInvoiceInput, UpdateInvoiceInput } from '../validations/invoice.validation';
 import type { Invoice } from '../db/schema/invoices';
 
 export class InvoiceService {

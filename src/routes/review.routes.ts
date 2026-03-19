@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { reviewController } from '../controllers/review.controller';
-import { authenticate, authorize } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
+import { validate } from '../middlewares/validation.middleware';
 import {
   createReviewSchema,
   updateReviewSchema,
@@ -10,7 +10,7 @@ import {
   getReviewsByUserQuerySchema,
   getUserReviewParamsSchema,
   deleteReviewParamsSchema,
-} from '../validations/review';
+} from '../validations/review.validation';
 
 const router = Router();
 

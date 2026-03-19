@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { userController } from '../controllers/user.controller';
-import { authenticate, authorize } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
+import { validate } from '../middlewares/validation.middleware';
 import {
   createUserSchema,
   updateUserSchema,

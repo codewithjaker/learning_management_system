@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import { syllabusItemController } from '../controllers/syllabusItem.controller';
-import { authenticate, authorize } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
+import { validate } from '../middlewares/validation.middleware';
 import {
   createItemSchema,
   updateItemSchema,
   getItemParamsSchema,
   getItemsBySectionQuerySchema,
   deleteItemParamsSchema,
-} from '../validations/syllabusItem';
+} from '../validations/syllabusItem.validation';
 
 const router = Router();
 

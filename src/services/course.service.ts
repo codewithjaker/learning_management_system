@@ -4,7 +4,7 @@ import { courses } from '../db/schema/courses';
 import { users } from '../db/schema/users';
 import { eq, like, desc, asc, count, and, sql, inArray } from 'drizzle-orm';
 import { NotFoundError, BadRequestError, ForbiddenError } from '../utils/errors';
-import type { CreateCourseInput, UpdateCourseInput } from '../validations/course';
+import type { CreateCourseInput, UpdateCourseInput } from '../validations/course.validation';
 import type { Course } from '../db/schema/courses';
 
 export class CourseService {

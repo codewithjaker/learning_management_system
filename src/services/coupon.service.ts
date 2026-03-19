@@ -23,7 +23,7 @@ import {
 import type {
   CreateCouponInput,
   UpdateCouponInput,
-} from "../validations/coupon";
+} from "../validations/coupon.validation";
 import type { Coupon } from "../db/schema/coupons";
 
 export class CouponService {

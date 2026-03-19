@@ -3,7 +3,7 @@ import { syllabusSections } from '../db/schema/syllabusSections';
 import { courses } from '../db/schema/courses';
 import { eq, and, asc, count, desc, sql } from 'drizzle-orm';
 import { NotFoundError, BadRequestError, ForbiddenError } from '../utils/errors';
-import type { CreateSectionInput, UpdateSectionInput } from '../validations/syllabusSection';
+import type { CreateSectionInput, UpdateSectionInput } from '../validations/syllabusSection.validation';
 import type { SyllabusSection } from '../db/schema/syllabusSections';
 
 export class SyllabusSectionService {

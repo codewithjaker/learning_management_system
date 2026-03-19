@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { paymentController } from '../controllers/payment.controller';
-import { authenticate, authorize } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
+import { validate } from '../middlewares/validation.middleware';
 import {
   createPaymentSchema,
   updatePaymentSchema,
@@ -9,7 +9,7 @@ import {
   getPaymentsQuerySchema,
   deletePaymentParamsSchema,
   completePaymentSchema,
-} from '../validations/payment';
+} from '../validations/payment.validation';
 
 const router = Router();
 

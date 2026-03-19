@@ -54,7 +54,7 @@ import { eq } from 'drizzle-orm';
 import { comparePassword, hashPassword } from '../utils/password';
 import { generateToken } from '../utils/jwt';
 import { BadRequestError, UnauthorizedError } from '../utils/errors';
-import type { RegisterInput, LoginInput } from '../validations/auth';
+import type { RegisterInput, LoginInput } from '../validations/auth.validation';
 
 export class AuthService {
   async register(data: RegisterInput) {

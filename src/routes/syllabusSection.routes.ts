@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import { syllabusSectionController } from '../controllers/syllabusSection.controller';
-import { authenticate, authorize } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
+import { validate } from '../middlewares/validation.middleware';
 import {
   createSectionSchema,
   updateSectionSchema,
   getSectionParamsSchema,
   getSectionsByCourseQuerySchema,
   deleteSectionParamsSchema,
-} from '../validations/syllabusSection';
+} from '../validations/syllabusSection.validation';
 
 const router = Router();
 

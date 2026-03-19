@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { categoryController } from '../controllers/category.controller';
-import { authenticate, authorize } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
+import { validate } from '../middlewares/validation.middleware';
 import {
   createCategorySchema,
   updateCategorySchema,
@@ -9,7 +9,7 @@ import {
   getCategoryBySlugParamsSchema,
   getCategoriesQuerySchema,
   deleteCategoryParamsSchema,
-} from '../validations/category';
+} from '../validations/category.validation';
 
 const router = Router();
 

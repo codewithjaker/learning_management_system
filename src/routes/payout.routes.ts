@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import { payoutController } from '../controllers/payout.controller';
-import { authenticate, authorize } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
+import { validate } from '../middlewares/validation.middleware';
 import {
   createPayoutSchema,
   updatePayoutSchema,
   getPayoutParamsSchema,
   getPayoutsQuerySchema,
   deletePayoutParamsSchema,
-} from '../validations/payout';
+} from '../validations/payout.validation';
 
 const router = Router();
 

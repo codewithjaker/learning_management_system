@@ -8,7 +8,7 @@ import { enrollments } from '../db/schema/enrollments';
 import { eq, and, count, desc, asc, sql } from 'drizzle-orm';
 import { NotFoundError, BadRequestError, ForbiddenError } from '../utils/errors';
 import { courseService } from './course.service'; // for updating stats
-import type { CreateReviewInput, UpdateReviewInput } from '../validations/review';
+import type { CreateReviewInput, UpdateReviewInput } from '../validations/review.validation';
 import type { CourseReview } from '../db/schema/reviews';
 
 export class ReviewService {

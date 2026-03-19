@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { courseController } from '../controllers/course.controller';
-import { authenticate, authorize } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
+import { validate } from '../middlewares/validation.middleware';
 import {
   createCourseSchema,
   updateCourseSchema,
@@ -11,7 +11,7 @@ import {
   deleteCourseParamsSchema,
   publishCourseSchema,
   updateCourseStatsSchema,
-} from '../validations/course';
+} from '../validations/course.validation';
 
 const router = Router();
 

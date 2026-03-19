@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { enrollmentController } from '../controllers/enrollment.controller';
-import { authenticate, authorize } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
+import { validate } from '../middlewares/validation.middleware';
 import {
   createEnrollmentSchema,
   updateEnrollmentSchema,
@@ -9,7 +9,7 @@ import {
   getEnrollmentsQuerySchema,
   deleteEnrollmentParamsSchema,
   completeEnrollmentSchema,
-} from '../validations/enrollment';
+} from '../validations/enrollment.validation';
 
 const router = Router();
 

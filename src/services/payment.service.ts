@@ -6,7 +6,7 @@ import { users } from '../db/schema/users';
 import { eq, and, desc, asc, count, gte, lte, sql } from 'drizzle-orm';
 import { NotFoundError, BadRequestError, ForbiddenError } from '../utils/errors';
 import { invoiceService } from './invoice.service'; // we'll need this to update invoice status
-import type { CreatePaymentInput, UpdatePaymentInput, CompletePaymentInput } from '../validations/payment';
+import type { CreatePaymentInput, UpdatePaymentInput, CompletePaymentInput } from '../validations/payment.validation';
 import type { Payment } from '../db/schema/payments';
 
 export class PaymentService {

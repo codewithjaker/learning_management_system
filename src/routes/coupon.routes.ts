@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { couponController } from '../controllers/coupon.controller';
-import { authenticate, authorize } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
+import { validate } from '../middlewares/validation.middleware';
 import {
   createCouponSchema,
   updateCouponSchema,
@@ -10,7 +10,7 @@ import {
   getCouponsQuerySchema,
   validateCouponQuerySchema,
   deleteCouponParamsSchema,
-} from '../validations/coupon';
+} from '../validations/coupon.validation';
 
 const router = Router();
 

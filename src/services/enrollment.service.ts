@@ -5,7 +5,7 @@ import { users } from '../db/schema/users';
 import { courses } from '../db/schema/courses';
 import { eq, and, count, desc, asc, sql } from 'drizzle-orm';
 import { NotFoundError, BadRequestError, ForbiddenError } from '../utils/errors';
-import type { CreateEnrollmentInput, UpdateEnrollmentInput } from '../validations/enrollment';
+import type { CreateEnrollmentInput, UpdateEnrollmentInput } from '../validations/enrollment.validation';
 import type { Enrollment } from '../db/schema/enrollments';
 
 export class EnrollmentService {

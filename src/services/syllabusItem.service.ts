@@ -5,7 +5,7 @@ import { syllabusSections } from '../db/schema/syllabusSections';
 import { courses } from '../db/schema/courses';
 import { eq, and, count, asc, desc } from 'drizzle-orm';
 import { NotFoundError, BadRequestError, ForbiddenError } from '../utils/errors';
-import type { CreateItemInput, UpdateItemInput } from '../validations/syllabusItem';
+import type { CreateItemInput, UpdateItemInput } from '../validations/syllabusItem.validation';
 import type { SyllabusItem } from '../db/schema/syllabusItems';
 
 export class SyllabusItemService {

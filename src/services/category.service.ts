@@ -2,7 +2,7 @@ import { db } from '../db';
 import { categories } from '../db/schema/categories';
 import { eq, like, desc, asc, count, and, sql } from 'drizzle-orm';
 import { NotFoundError, BadRequestError } from '../utils/errors';
-import type { CreateCategoryInput, UpdateCategoryInput } from '../validations/category';
+import type { CreateCategoryInput, UpdateCategoryInput } from '../validations/category.validation';
 import type { Category } from '../db/schema/categories';
 
 export class CategoryService {

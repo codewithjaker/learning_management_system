@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import { invoiceItemController } from '../controllers/invoiceItem.controller';
-import { authenticate, authorize } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
+import { validate } from '../middlewares/validation.middleware';
 import {
   createInvoiceItemSchema,
   updateInvoiceItemSchema,
   getInvoiceItemParamsSchema,
   getInvoiceItemsQuerySchema,
   deleteInvoiceItemParamsSchema,
-} from '../validations/invoiceItem';
+} from '../validations/invoiceItem.validation';
 
 const router = Router();
 
