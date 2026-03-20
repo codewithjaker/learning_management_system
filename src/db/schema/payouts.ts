@@ -20,3 +20,4 @@ export const payouts = pgTable('payouts', {
 }));
 
 export type Payout = typeof payouts.$inferSelect
+export type NewPayout = typeof payouts.$inferInsert

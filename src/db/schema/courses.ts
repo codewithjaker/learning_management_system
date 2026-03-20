@@ -83,4 +83,4 @@ export const courses = pgTable(
 );
 
 export type Course = typeof courses.$inferSelect;
- 
+export type NewCourse = typeof courses.$inferInsert;

@@ -1,6 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
-import { userService } from '../services/user.service';
-import { NotFoundError } from '../utils/errors';
+import { Request, Response, NextFunction } from "express";
+import { userService } from "../services/user.service";
+import { NotFoundError } from "../utils/errors";
+import { ApiResponse } from "../utils/api-response";
 
 export class UserController {
   async createUser(req: Request, res: Response, next: NextFunction) {
@@ -16,6 +17,18 @@ export class UserController {
     try {
       const result = await userService.getAllUsers(req.query as any);
       res.json(result);
+
+      // res
+      //   .status(200)
+      //   .json(
+      //     ApiResponse.paginated(
+      //       result.data,
+      //       parseInt(req.query.page as string) || 1,
+      //       parseInt(req.query.limit as string) || 10,
+      //       result.total,
+      //       "Users retrieved successfully",
+      //     ),
+      //   );
     } catch (error) {
       next(error);
     }

@@ -16,3 +16,6 @@ export const userItemProgress = pgTable('user_item_progress', {
   userIdx: index('progress_user_idx').on(table.userId),
   itemIdx: index('progress_item_idx').on(table.itemId),
 }));
+
+export type UserItemProgress = typeof userItemProgress.$inferSelect
+export type NewUserItemProgress = typeof userItemProgress.$inferInsert

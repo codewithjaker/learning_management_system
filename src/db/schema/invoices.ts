@@ -50,4 +50,5 @@ export const invoices = pgTable(
 );
 
 export type Invoice = typeof invoices.$inferSelect;
+export type  NewInvoice = typeof invoices.$inferInsert;
  
