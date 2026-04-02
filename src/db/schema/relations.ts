@@ -3,6 +3,7 @@ import * as tables from './index'; // all tables re-exported
 
 // ========================= USERS =========================
 export const usersRelations = relations(tables.users, ({ many }) => ({
+  sessions: many(tables.sessions),  
   coursesTeaching: many(tables.courses, { relationName: 'instructor' }),
   enrollments: many(tables.enrollments),
   progress: many(tables.userItemProgress),

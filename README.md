@@ -38,3 +38,36 @@ A comprehensive REST API for managing software products, built with Express.js, 
    ```bash
    git clone https://github.com/yourusername/software-products-api.git
    cd software-products-api
+
+
+### 🔐 Auth Routes
+```js
+POST /auth/register
+POST /auth/login
+POST /auth/logout
+POST /auth/logout-all
+POST /auth/refresh-token
+
+POST /auth/forgot-password
+POST /auth/verify-otp
+POST /auth/resend-otp
+POST /auth/reset-password
+
+POST /auth/change-password
+
+POST /auth/verify-email
+POST /auth/resend-verification
+```
+
+### 👤 User Routes
+```js
+GET    /users/me
+PUT    /users/me
+DELETE /users/me
+```
+
+### 🔑 Optional (Advanced / Senior Level)
+```js
+GET    /auth/sessions          → list active sessions
+DELETE /auth/sessions/:id     → revoke specific session
+```

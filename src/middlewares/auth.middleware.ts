@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { UnauthorizedError, ForbiddenError } from '../utils/errors';
 import { userService } from '../services/user.service';
+import { verifyToken } from '../utils/jwt';
 
 declare global {
   namespace Express {
@@ -11,19 +12,36 @@ declare global {
   }
 }
 
-export const authenticate = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+// export const authenticate = async (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ) => {
+//   try {
+//     const token = req.headers.authorization?.replace('Bearer ', '');
+//     if (!token) throw new UnauthorizedError();
+
+//     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
+//     const user = await userService.getUserById(decoded.id);
+//     if (!user) throw new UnauthorizedError();
+
+//     req.user = user;
+//     next();
+//   } catch (error) {
+//     next(new UnauthorizedError());
+//   }
+// };
+
+export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const token = req.headers.authorization?.replace('Bearer ', '');
-    if (!token) throw new UnauthorizedError();
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      throw new UnauthorizedError();
+    }
+    const token = authHeader.split(' ')[1];
+    const decoded = verifyToken(token) as { id: number };
     const user = await userService.getUserById(decoded.id);
-    if (!user) throw new UnauthorizedError();
-
+    if (!user || !user.isActive) throw new UnauthorizedError();
     req.user = user;
     next();
   } catch (error) {

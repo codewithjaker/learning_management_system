@@ -2,6 +2,8 @@
 
 export * from "./enums";
 export * from "./users";
+export * from "./verificationTokens";
+export * from "./sessions";
 export * from "./categories";
 export * from "./courses";
 export * from "./syllabusSections";
