@@ -11,8 +11,7 @@ export const errorHandler = (
 
   // Handle Zod validation errors
   if (error.name === "ZodError") {
-    // @ts-ignore
-    return res.status(400).json(ApiResponse.error("Validation failed", error));
+    return res.status(400).json(ApiResponse.error("Validation failed"));
   }
 
   // Handle database errors
