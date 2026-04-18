@@ -40,13 +40,15 @@ export interface Course {
 const russianCourse :Course = [
   {
     "id": "russian-a1-a2-001",
-    "title": "Russian A1-A2 Comprehensive Course",
-    "slug": "russian-a1-a2-language-course",
+    "title": "Russian A1-A2 Comprehensive Language Course",
+    "slug": "russian-a1-a2-comprehensive-language-course",
+    "subtitle": "From Zero to Everyday Conversations",
     "description": "A complete course for beginners to reach a confident elementary level, covering the fundamentals of Russian grammar and vocabulary for everyday communication.",
     "fullDescription": "This course provides a structured path from complete beginner (A1) to elementary (A2) proficiency in Russian. You will master the Cyrillic alphabet, essential grammar (including all six cases and basic verb aspects), and a core vocabulary of over 1000 words. The course focuses on practical communication skills, enabling you to navigate daily life, discuss familiar topics, and understand simple texts.",
     "image": "https://example.com/russian-course-cover.jpg",
+    "previewVideoUrl": "https://example.com/preview-a1-a2.mp4",
     "duration": "30.1 hrs",
-    "level": "Beginner to Elementary (A1-A2)",
+    "level": "beginner",
     "students": 5000,
     "rating": 4.8,
     "price": 299,
@@ -214,7 +216,7 @@ const russianCourse :Course = [
   {
     "id": "russian-b1-b2-002",
     "title": "Russian B1-B2 Intermediate Mastery Course",
-    "slug": "russian-b1-b2-intermediate-course",
+    "slug": "russian-b1-b2-intermediate-mastery-course",
     "description": "Advance from elementary to upper-intermediate proficiency, mastering complex grammar, idiomatic expressions, and confident conversation on abstract topics.",
     "fullDescription": "This course builds directly on the A1-A2 foundation, guiding learners to B2 (upper-intermediate) level. You will deepen your understanding of verbal aspect, master all verbs of motion with prefixes, and learn to use participles and gerunds. The curriculum emphasizes fluent discussion of news, culture, work, and personal opinions. With over 2000 new vocabulary items and authentic materials (film clips, articles), you will be prepared for the TORFL-I (B1) and TORFL-II (B2) exams.",
     "image": "https://example.com/russian-b1-b2-cover.jpg",
@@ -391,7 +393,7 @@ const russianCourse :Course = [
   {
     "id": "russian-c1-c2-003",
     "title": "Russian C1-C2 Advanced Proficiency Course",
-    "slug": "russian-c1-c2-advanced-course",
+    "slug": "russian-c1-c2-advanced-proficiency-course",
     "description": "Achieve near-native fluency and mastery of Russian, enabling you to handle complex academic, professional, and literary material with precision and stylistic nuance.",
     "fullDescription": "This advanced course is designed for learners who have completed the B1-B2 level and wish to attain C1 (Effective Operational Proficiency) or C2 (Mastery). The curriculum delves into the subtleties of Russian syntax, advanced stylistics, idiomatic and colloquial speech, and the nuances of professional and academic discourse. You will engage with authentic, unadapted materials including classic literature, academic lectures, political debates, and specialized texts. By the end, you will be able to express yourself spontaneously, very fluently and precisely, differentiating finer shades of meaning even in more complex situations. This course fully prepares you for the TORFL-III (C1) and TORFL-IV (C2) examinations.",
     "image": "https://example.com/russian-c1-c2-cover.jpg",
@@ -569,3 +571,6 @@ const russianCourse :Course = [
 ]
 
 ```
+
+
+
