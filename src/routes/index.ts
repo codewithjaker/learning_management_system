@@ -13,6 +13,7 @@ import invoiceRoutes from './invoice.routes';
 import invoiceItemRoutes from './invoiceItem.routes';
 import paymentRoutes from './payment.routes';
 import payoutRoutes from './payout.routes';
+import dashboardRoutes from './dashboard.routes';
 
 const router = Router();
 
@@ -30,5 +31,6 @@ router.use('/invoices', invoiceRoutes);
 router.use('/invoice-items', invoiceItemRoutes);
 router.use('/payments', paymentRoutes);
 router.use('/payouts', payoutRoutes);
+router.use('/dashboard', dashboardRoutes);
 
 export default router;
