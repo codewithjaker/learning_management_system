@@ -15,6 +15,13 @@
       "when": 1773674398842,
       "tag": "0001_careful_stark_industries",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1776608399872,
+      "tag": "0002_right_morg",
+      "breakpoints": true
     }
   ]
 }

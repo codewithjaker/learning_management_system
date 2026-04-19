@@ -16,6 +16,8 @@ export * from "./invoices";
 export * from "./invoiceItems";
 export * from "./payments";
 export * from "./payouts";
+export * from "./emailSettings";
+export * from "./settings";
 export * from "./relations";
 
 
