@@ -8,7 +8,7 @@ import {
   getUserParamsSchema,
   getUsersQuerySchema,
   deleteUserParamsSchema,
-} from '../validations/user';
+} from '../validations/user.validation';
 
 const router = Router();
 

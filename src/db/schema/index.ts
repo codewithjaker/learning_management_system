@@ -19,5 +19,10 @@ export * from "./payouts";
 export * from "./emailSettings";
 export * from "./settings";
 export * from "./relations";
+export * from "./quizzes";
+export * from "./quizQuestions";
+export * from "./questionOptions";
+export * from "./quizAttempts";
+export * from "./quizAnswers";
 
 

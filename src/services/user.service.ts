@@ -3,7 +3,7 @@ import { users } from '../db/schema/users';
 import { eq, like, desc, asc, count, and } from 'drizzle-orm';
 import { NotFoundError, BadRequestError } from '../utils/errors';
 import { hashPassword } from '../utils/password';
-import type { CreateUserInput, UpdateUserInput } from '../validations/user';
+import type { CreateUserInput, UpdateUserInput } from '../validations/user.validation';
 import type { User } from '../db/schema/users';
 
 export class UserService {

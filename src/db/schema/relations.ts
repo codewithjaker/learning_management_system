@@ -3,7 +3,7 @@ import * as tables from './index'; // all tables re-exported
 
 // ========================= USERS =========================
 export const usersRelations = relations(tables.users, ({ many }) => ({
-  sessions: many(tables.sessions),  
+  sessions: many(tables.sessions),
   coursesTeaching: many(tables.courses, { relationName: 'instructor' }),
   enrollments: many(tables.enrollments),
   progress: many(tables.userItemProgress),
@@ -82,4 +82,57 @@ export const paymentsRelations = relations(tables.payments, ({ one }) => ({
 // ========================= PAYOUTS =========================
 export const payoutsRelations = relations(tables.payouts, ({ one }) => ({
   instructor: one(tables.users, { fields: [tables.payouts.instructorId], references: [tables.users.id] }),
+}));
+
+// ========================= QUIZ RELATIONS =========================
+export const quizzesRelations = relations(tables.quizzes, ({ one, many }) => ({
+  syllabusItem: one(tables.syllabusItems, {
+    fields: [tables.quizzes.syllabusItemId],
+    references: [tables.syllabusItems.id],
+  }),
+  questions: many(tables.quizQuestions),
+  attempts: many(tables.quizAttempts),
+}));
+
+export const quizQuestionsRelations = relations(tables.quizQuestions, ({ one, many }) => ({
+  quiz: one(tables.quizzes, {
+    fields: [tables.quizQuestions.quizId],
+    references: [tables.quizzes.id],
+  }),
+  options: many(tables.questionOptions),
+  answers: many(tables.quizAnswers),
+}));
+
+export const questionOptionsRelations = relations(tables.questionOptions, ({ one }) => ({
+  question: one(tables.quizQuestions, {
+    fields: [tables.questionOptions.questionId],
+    references: [tables.quizQuestions.id],
+  }),
+}));
+
+export const quizAttemptsRelations = relations(tables.quizAttempts, ({ one, many }) => ({
+  user: one(tables.users, {
+    fields: [tables.quizAttempts.userId],
+    references: [tables.users.id],
+  }),
+  quiz: one(tables.quizzes, {
+    fields: [tables.quizAttempts.quizId],
+    references: [tables.quizzes.id],
+  }),
+  answers: many(tables.quizAnswers),
+}));
+
+export const quizAnswersRelations = relations(tables.quizAnswers, ({ one }) => ({
+  attempt: one(tables.quizAttempts, {
+    fields: [tables.quizAnswers.attemptId],
+    references: [tables.quizAttempts.id],
+  }),
+  question: one(tables.quizQuestions, {
+    fields: [tables.quizAnswers.questionId],
+    references: [tables.quizQuestions.id],
+  }),
+  selectedOption: one(tables.questionOptions, {
+    fields: [tables.quizAnswers.selectedOptionId],
+    references: [tables.questionOptions.id],
+  }),
 }));

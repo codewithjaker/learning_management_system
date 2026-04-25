@@ -16,6 +16,7 @@ import payoutRoutes from './payout.routes';
 import dashboardRoutes from './dashboard.routes';
 import reportRoutes from './report.routes';
 import settingsRoutes from './settings.routes';
+import quizRoutes from './quiz.routes';
 
 const router = Router();
 
@@ -36,5 +37,6 @@ router.use('/payouts', payoutRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/reports', reportRoutes);
 router.use('/settings', settingsRoutes);
+router.use('/quizzes', quizRoutes);
 
 export default router;

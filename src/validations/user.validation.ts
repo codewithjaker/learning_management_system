@@ -36,12 +36,27 @@ export const getUserParamsSchema = z.object({
 });
 
 // Get all users with pagination & filters
+// export const getUsersQuerySchema = z.object({
+//   query: z.object({
+//     page: z.string().optional().transform(Number).default(1),
+//     limit: z.string().optional().transform(Number).default(10),
+//     search: z.string().optional(),
+//     role: z.enum(['student', 'instructor', 'admin']).optional(),
+//     sortBy: z.enum(['fullName', 'createdAt', 'updatedAt']).optional().default('createdAt'),
+//     sortOrder: z.enum(['asc', 'desc']).optional().default('desc'),
+//   }),
+// });
+
 export const getUsersQuerySchema = z.object({
   query: z.object({
     page: z.string().optional().transform(Number).default(1),
     limit: z.string().optional().transform(Number).default(10),
     search: z.string().optional(),
-    role: z.enum(['student', 'instructor', 'admin']).optional(),
+    // Accept empty string as "no filter"
+    role: z.preprocess(
+      (val) => (val === '' ? undefined : val),
+      z.enum(['student', 'instructor', 'admin']).optional()
+    ),
     sortBy: z.enum(['fullName', 'createdAt', 'updatedAt']).optional().default('createdAt'),
     sortOrder: z.enum(['asc', 'desc']).optional().default('desc'),
   }),
