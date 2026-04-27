@@ -4,6 +4,7 @@ import { authenticate, authorize } from '../middlewares/auth.middleware';
 import { validate } from '../middlewares/validation.middleware';
 import {
   createReviewSchema,
+  getReviewsQuerySchema,
   updateReviewSchema,
   getReviewParamsSchema,
   getReviewsByCourseQuerySchema,
@@ -20,6 +21,9 @@ router.get(
   validate(getReviewsByCourseQuerySchema),
   reviewController.getReviewsByCourse
 );
+
+// router.get('/', authenticate, authorize('admin'), validate(getReviewsQuerySchema), reviewController.getReviews);
+router.get('/', validate(getReviewsQuerySchema), reviewController.getReviews);
 
 router.get(
   '/:id',

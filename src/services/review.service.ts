@@ -137,6 +137,68 @@ export class ReviewService {
     return review;
   }
 
+  async getReviews(params: {
+    page?: number;
+    limit?: number;
+    courseId?: number;
+    rating?: number;
+    sortBy?: string;
+    sortOrder?: 'asc' | 'desc';
+  }) {
+    const page = params.page || 1;
+    const limit = params.limit || 10;
+    const offset = (page - 1) * limit;
+
+    const conditions = [];
+    if (params.courseId) conditions.push(eq(courseReviews.courseId, params.courseId));
+    if (params.rating) conditions.push(eq(courseReviews.rating, params.rating));
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    // Get total count
+    const totalResult = await db
+      .select({ count: count() })
+      .from(courseReviews)
+      .where(whereClause);
+    const total = Number(totalResult[0]?.count) || 0;
+
+    // Determine sort column and order
+    const sortColumn = params.sortBy === 'createdAt' ? courseReviews.createdAt : courseReviews.rating;
+    const sortOrder = params.sortOrder === 'desc' ? desc : asc;
+
+    // Fetch data with joins to user and course
+    const data = await db
+      .select({
+        id: courseReviews.id,
+        userId: courseReviews.userId,
+        courseId: courseReviews.courseId,
+        rating: courseReviews.rating,
+        comment: courseReviews.comment,
+        createdAt: courseReviews.createdAt,
+        updatedAt: courseReviews.updatedAt,
+        user: {
+          id: users.id,
+          fullName: users.fullName,
+          email: users.email,
+          avatar: users.avatar,
+        },
+        course: {
+          id: courses.id,
+          title: courses.title,
+          slug: courses.slug,
+        },
+      })
+      .from(courseReviews)
+      .innerJoin(users, eq(courseReviews.userId, users.id))
+      .innerJoin(courses, eq(courseReviews.courseId, courses.id))
+      .where(whereClause)
+      .orderBy(sortOrder(sortColumn))
+      .limit(limit)
+      .offset(offset);
+
+    return { data, total };
+  }
+
   async getReviewById(id: number): Promise<CourseReview> {
     const [review] = await db
       .select()

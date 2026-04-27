@@ -13,6 +13,23 @@ export class ReviewController {
     }
   }
 
+  async getReviews(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { page, limit, courseId, rating, sortBy, sortOrder } = req.query;
+      const result = await reviewService.getReviews({
+        page: page ? parseInt(page as string) : undefined,
+        limit: limit ? parseInt(limit as string) : undefined,
+        courseId: courseId ? parseInt(courseId as string) : undefined,
+        rating: rating ? parseInt(rating as string) : undefined,
+        sortBy: sortBy as string,
+        sortOrder: sortOrder as 'asc' | 'desc',
+      });
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async getReviewById(req: Request, res: Response, next: NextFunction) {
     try {
       const id = Number(req.params.id);

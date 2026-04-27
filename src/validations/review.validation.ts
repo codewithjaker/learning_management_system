@@ -16,6 +16,18 @@ export const createReviewSchema = z.object({
   }),
 });
 
+// Get 
+export const getReviewsQuerySchema = z.object({
+  query: z.object({
+    page: z.string().optional().transform(val => val ? parseInt(val) : 1),
+    limit: z.string().optional().transform(val => val ? parseInt(val) : 10),
+    courseId: z.string().optional().transform(val => val ? parseInt(val) : undefined),
+    rating: z.string().optional().transform(val => val ? parseInt(val) : undefined),
+    sortBy: z.enum(['createdAt', 'rating']).optional().default('createdAt'),
+    sortOrder: z.enum(['asc', 'desc']).optional().default('desc'),
+  }),
+});
+
 // Update review schema
 export const updateReviewSchema = z.object({
   params: idParam,
