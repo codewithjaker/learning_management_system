@@ -1,44 +1,64 @@
+// {
+//   "compilerOptions": {
+//     // JavaScript version that TypeScript will compile down to.
+//     // ES2020 gives modern features like optional chaining, nullish coalescing, etc.
+//     "target": "ES2020",
+
+//     // Type of module system to generate. CommonJS is used in Node.js environments.
+//     "module": "CommonJS",
+
+//     // How TypeScript resolves modules. "Node" matches Node.js behavior.
+//     "moduleResolution": "Node",
+
+//     // Allows default import syntax (import express from "express") 
+//     // even when the module exports with CommonJS.
+//     "esModuleInterop": true,
+
+//     // Enables all strict type-checking options in TypeScript.
+//     "strict": true,
+
+//     // Skips checking type definitions from node_modules (faster compilation).
+//     "skipLibCheck": true,
+
+//     // Ensures consistency in file name casing across OS (avoids case-sensitive bugs).
+//     "forceConsistentCasingInFileNames": true,
+
+//     // Where your TypeScript source files live.
+//     "rootDir": "src",
+
+//     // Where compiled JavaScript files should be put.
+//     "outDir": "dist",
+
+//     // Important! Allows normal import/export in CommonJS without errors.
+//     // Fixes the "verbatimModuleSyntax" error you were getting.
+//     "verbatimModuleSyntax": false
+    
+//   },
+
+//   // Include only the src/ folder for TypeScript compilation.
+//   "include": ["src"]
+// }
+
 {
   "compilerOptions": {
-    // JavaScript version that TypeScript will compile down to.
-    // ES2020 gives modern features like optional chaining, nullish coalescing, etc.
     "target": "ES2020",
 
-    // Type of module system to generate. CommonJS is used in Node.js environments.
-    "module": "CommonJS",
+    // ✅ MUST match
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
 
-    // How TypeScript resolves modules. "Node" matches Node.js behavior.
-    "moduleResolution": "Node",
-
-    // Allows default import syntax (import express from "express") 
-    // even when the module exports with CommonJS.
     "esModuleInterop": true,
-
-    // Enables all strict type-checking options in TypeScript.
     "strict": true,
-
-    // Skips checking type definitions from node_modules (faster compilation).
     "skipLibCheck": true,
-
-    // Ensures consistency in file name casing across OS (avoids case-sensitive bugs).
     "forceConsistentCasingInFileNames": true,
 
-    // Where your TypeScript source files live.
     "rootDir": "src",
-
-    // Where compiled JavaScript files should be put.
     "outDir": "dist",
 
-    // Important! Allows normal import/export in CommonJS without errors.
-    // Fixes the "verbatimModuleSyntax" error you were getting.
     "verbatimModuleSyntax": false
-    
   },
-
-  // Include only the src/ folder for TypeScript compilation.
   "include": ["src"]
 }
-
 
 // {
 //   "compilerOptions": {
